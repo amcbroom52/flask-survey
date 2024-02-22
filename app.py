@@ -22,5 +22,14 @@ def redirect_to_first_question():
 
 
 @app.get('/questions/<int:question_num>')
-def redirect_to_next_question(question_num):
+def render_question(question_num):
     return render_template('question.html', question=survey.questions[question_num])
+
+@app.post('/answer')
+def redirect_to_next_question():
+    # dot notation to access property form and bracket notation to access the key
+    answer = request.form['answer']
+    responses.append(answer)
+
+    return redirect(
+        f'/questions/{len(responses)}')
