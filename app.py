@@ -44,6 +44,8 @@ def render_question(question_num):
         flash(f"Trying to access questions without answering question {len(session['responses'])} first!")
         return redirect(f'/questions/{len(session["responses"])}')
     # make the inputs below into variables question=survey.questions[question_num]
+    # add check to see if responses exist in the session, if not don't go fwd
+    # rvw solution's use of .get
     return render_template('question.html', question=survey.questions[question_num])
 
 
